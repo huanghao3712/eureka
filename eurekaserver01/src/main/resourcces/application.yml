@@ -1,0 +1,19 @@
+server:
+ port : 7001
+spring :
+  security :
+   user :
+     name : root
+     password : 123456
+  application :
+    name : eurekaserver
+eureka:
+  instance :
+    hostname : eureka01
+  client:
+     serviceUrl:
+      defaultZone : http://root:123456@eureka02:7002/eureka/,http://root:123456@eureka03:7003/eureka/
+
+
+
+

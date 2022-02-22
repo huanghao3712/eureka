@@ -1,0 +1,42 @@
+server:
+  port : 7070
+  name : serviceprovider
+spring :
+  application :
+    name : serviceprovider #应用名称，集群下应该相同
+  datasource :
+    username : root
+    password : zsxm123456.
+    url : jdbc:mysql://127.0.0.1:3306/sshe?useUnicode=true&characterEncoding=utf-8
+    driver-class-name : com.mysql.cj.jdbc.Driver
+    hikari:
+          connection-timeout: 30000        # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+          minimum-idle: 5                  # 最小连接数
+          maximum-pool-size: 20            # 最大连接数
+          auto-commit: true                # 事务自动提交
+          idle-timeout: 600000             # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+          pool-name: DateSourceHikariCP     # 连接池名字
+          max-lifetime: 1800000             # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+          connection-test-query: SELECT 1  # 连接测试语句
+mybatis:
+  # model的包
+  mapper-locations : classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰uName自动映射到u_name
+eureka:
+  instance :
+    hostname : eureka03
+    id : serviceprovider
+  client:
+    serviceUrl:
+      defaultZone : http://root:123456@eureka01:7001/eureka/,http://root:123456@eureka02:7002/eureka/,http://root:123456@eureka03:7003/eureka/
+management :
+ endpoints :
+  web :
+   exposure :
+    include : shutdown
+ endpoint :
+  shutdown :
+   enable : true
+
+

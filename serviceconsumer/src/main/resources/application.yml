@@ -1,0 +1,22 @@
+server:
+  port : 7073
+  name : serviceconsumer
+  compression :
+   enabled : true
+  tomcat :
+   max-threads : 1
+spring :
+  application :
+    name : serviceconsumer
+
+feign :
+ httpclient :
+  enabled : true
+eureka:
+
+  client:
+    register-with-eureka : false
+    register-fetch-interval-seconds : 10
+    serviceUrl:
+      defaultZone : http://root:123456@eureka01:7001/eureka/,http://root:123456@eureka02:7002/eureka/,http://root:123456@eureka03:7003/eureka/
+
